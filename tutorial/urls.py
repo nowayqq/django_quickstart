@@ -4,7 +4,9 @@ from rest_framework_extensions.routers import ExtendedDefaultRouter
 
 from tutorial.quickstart import views
 from tutorial.quickstart.router import SwitchDetailRouter
-from tutorial.quickstart.views import UserTweetViewSet, UserFollowsViewSet, UserFollowersViewSet, FollowViewSet
+from tutorial.quickstart.views import UserTweetViewSet, UserFollowsViewSet, UserFollowersViewSet, FollowViewSet, \
+    redirection
+
 switch_router = SwitchDetailRouter()
 
 router = ExtendedDefaultRouter()
@@ -18,6 +20,7 @@ switch_router.register(r'follow', FollowViewSet)
 router.register(r'tweets', views.TweetViewSet)
 
 urlpatterns = [
+    path('', redirection),
     path('v1/', include(switch_router.urls)),
     path('v1/', include(router.urls)),
     path('admin/', admin.site.urls),

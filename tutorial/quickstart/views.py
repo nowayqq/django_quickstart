@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
@@ -91,3 +92,7 @@ class FeedViewSet(
             author__followers__follower=self.request.user,
             #           author__followers__follower__username=self.request.user.username
         )
+
+
+def redirection(request):
+    return redirect('v1/')
